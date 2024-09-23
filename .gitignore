@@ -1,11 +1,9 @@
 # Test files
 sha1sum-from-bash.txt
-test.tar.sha1
-test.tar.md5
-test.tar.sha256
 test.tar
+test.tar.*
 test/
-test*
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
