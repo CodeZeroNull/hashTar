@@ -5,6 +5,7 @@ test.tar.md5
 test.tar.sha256
 test.tar
 test/
+test*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
