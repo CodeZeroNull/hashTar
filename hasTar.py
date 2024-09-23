@@ -1,3 +1,4 @@
+import sys
 import tarfile
 import hashlib
 
@@ -17,7 +18,8 @@ def checksum(file_to_hash):
 
 def hashtar(input_tar_file):
     with tarfile.open(input_tar_file) as tar_input:
-        outputname = input_tar_file + 'sha1'
+        algo = "sha1" # Getting ready for algorithm chooser
+        outputname = input_tar_file + '.' + algo
         with open(outputname, 'w') as checksums_file:
             for member in tar_input.getmembers():
                 if member.isreg():  # skip if not file (folders are members, hashing them fails)
