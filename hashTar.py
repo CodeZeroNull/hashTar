@@ -5,17 +5,22 @@ import hashlib
 """
 This script calculates hashes for every file inside a tar file and creates a checksum file
 Usage:
-python3 hashTar.py target-tar-file
+python3 hashTar.py target-tar-file optional-algorithm
+
+Options for optional-algorithm are:
+md5
+sha1 (default)
+sha256
 
 """
 
 
 def checksum(file_to_hash, algorithm="sha1"):
-    if algorithm == "sha1":
+    if str(algorithm) == "sha1":
         hashresult = hashlib.sha1()
-    if algorithm == "md5":
+    if str(algorithm) == "md5":
         hashresult = hashlib.md5()
-    if algorithm == "sha256":
+    if str(algorithm) == "sha256":
         hashresult = hashlib.sha256()
     else:
         print("Please choose a valid algorithm, options are: sha1, md5, sha256")
@@ -26,7 +31,6 @@ def checksum(file_to_hash, algorithm="sha1"):
 
 def hashtar(input_tar_file, algorithm="sha1"):
     with tarfile.open(input_tar_file) as tar_input:
-        algorithm = "sha1" # Getting ready for algorithm chooser
         outputname = input_tar_file + '.' + algorithm
         with open(outputname, 'w') as checksums_file:
             for member in tar_input.getmembers():
