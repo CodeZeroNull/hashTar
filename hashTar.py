@@ -19,9 +19,9 @@ def checksum(file_to_hash, algorithm="sha1"):
     print("Algorithm from checksum: ", algorithm)
     if str(algorithm) == "sha1":
         hashresult = hashlib.sha1()
-    if str(algorithm) == "md5":
+    elif str(algorithm) == "md5":
         hashresult = hashlib.md5()
-    if str(algorithm) == "sha256":
+    elif str(algorithm) == "sha256":
         hashresult = hashlib.sha256()
     else:
         print("Please choose a valid algorithm, options are: sha1, md5, sha256")
