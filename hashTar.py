@@ -13,23 +13,23 @@ sha1 (default)
 sha256
 
 """
-
+algorithms = ["sha1", "md5", "sha256"]
 
 def checksum(file_to_hash, algorithm="sha1"):
-    if str(algorithm) == "sha1":
+    if algorithm == "sha1":
         hashresult = hashlib.sha1()
-    elif str(algorithm) == "md5":
+    elif algorithm == "md5":
         hashresult = hashlib.md5()
-    elif str(algorithm) == "sha256":
+    elif algorithm == "sha256":
         hashresult = hashlib.sha256()
-    else:
-        print("Please choose a valid algorithm, options are: sha1, md5, sha256")
-        return
     for chunk in iter(lambda: file_to_hash.read(4096), b''):
         hashresult.update(chunk)
     return hashresult.hexdigest()
 
 def hashtar(input_tar_file, algorithm="sha1"):
+    if algorithm not in algorithms:
+        print("Please choose a valid algorithm, options are: sha1, md5, sha256")
+        sys.exit()
     with tarfile.open(input_tar_file) as tar_input:
         outputname = input_tar_file + '.' + algorithm
         with open(outputname, 'w') as checksums_file:
