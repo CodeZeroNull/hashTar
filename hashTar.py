@@ -16,6 +16,7 @@ sha256
 
 
 def checksum(file_to_hash, algorithm="sha1"):
+    print("Algorithm from checksum: ", algorithm)
     if str(algorithm) == "sha1":
         hashresult = hashlib.sha1()
     if str(algorithm) == "md5":
@@ -30,6 +31,7 @@ def checksum(file_to_hash, algorithm="sha1"):
     return hashresult.hexdigest()
 
 def hashtar(input_tar_file, algorithm="sha1"):
+    print("Algorithm from hashtar: ", algorithm)
     with tarfile.open(input_tar_file) as tar_input:
         outputname = input_tar_file + '.' + algorithm
         with open(outputname, 'w') as checksums_file:
@@ -41,7 +43,8 @@ def hashtar(input_tar_file, algorithm="sha1"):
 if __name__ == '__main__':
     if len(sys.argv) == 2:
         hashtar(sys.argv[1])
-    if len(sys.argv) == 3:
+    elif len(sys.argv) == 3:
+        print("Algorithm from name-main: ", sys.argv[2])
         hashtar(sys.argv[1], sys.argv[2])
     else:
         print("Error! I need a target file and an optional algorithm.")
