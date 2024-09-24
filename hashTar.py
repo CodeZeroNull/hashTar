@@ -13,7 +13,8 @@ sha1 (default)
 sha256
 sha3_512"
 """
-algorithms = ["md5", "sha1", "sha256", "sha3_512"]
+
+ALGORITHMS = ["md5", "sha1", "sha256", "sha3_512"]
 
 def checksum(file_to_hash, algorithm="sha1"):
     if algorithm == "sha1":
@@ -31,7 +32,7 @@ def checksum(file_to_hash, algorithm="sha1"):
 def hashtar(input_tar_file, algorithm="sha1"):
     assert hasattr(hashlib, algorithm), "Invalid algorithm." # LBYL instead of EAFP, may be use
                                                              # try except instead
-    if algorithm not in algorithms:
+    if algorithm not in ALGORITHMS:
         print("Please choose a valid algorithm, options are: sha1, md5, sha256")
         sys.exit()
     with tarfile.open(input_tar_file) as tar_input:
@@ -49,4 +50,5 @@ if __name__ == '__main__':
         hashtar(sys.argv[1], sys.argv[2])
     else:
         print("Error! I need a target file and an optional algorithm.")
-        print("Options for algorithm are:", algorithms)
+        print("Options for algorithm are:", ALGORITHMS)
+
