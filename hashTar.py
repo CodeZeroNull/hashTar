@@ -11,7 +11,9 @@ Options for optional-algorithm are (md5 is not available in -- rare -- FIPS comp
 md5
 sha1 (default)
 sha256
-sha3_512"
+sha3_512
+
+Check hashlib documentation for other hashes that could be implemented here.
 """
 
 ALGORITHMS = ["md5", "sha1", "sha256", "sha3_512"]
