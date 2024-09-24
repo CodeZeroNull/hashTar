@@ -54,7 +54,11 @@ if __name__ == '__main__':
     elif len(sys.argv) == 3:
         hashtar(sys.argv[1], sys.argv[2])
     else:
-        print("Error! I need a target file and an optional algorithm.")
+        print("I need a target file and an optional algorithm.")
+        print()
+        print("Usage:")
+        print("python3 hashTar.py target-tar-file optional-algorithm")
+        print()
         print("Options for algorithm are:")
         for algo in ALGORITHMS:
             print(algo, end=" ")
