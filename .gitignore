@@ -1,7 +1,6 @@
 # Test files
 sha1sum-from-bash.txt
-test.tar
-test.tar.*
+test.*
 test/
 
 
