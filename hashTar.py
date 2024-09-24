@@ -45,3 +45,4 @@ if __name__ == '__main__':
         hashtar(sys.argv[1], sys.argv[2])
     else:
         print("Error! I need a target file and an optional algorithm.")
+        print("Options for algorithm are:", algorithms)
