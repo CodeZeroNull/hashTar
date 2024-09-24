@@ -7,7 +7,7 @@ This script calculates hashes for every file inside a tar file and creates a che
 Usage:
 python3 hashTar.py target-tar-file optional-algorithm
 
-Options for optional-algorithm are:
+Options for optional-algorithm are (md5 is not available in -- rare -- FIPS compliant Python):
 md5
 sha1 (default)
 sha256
