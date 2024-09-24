@@ -32,11 +32,14 @@ def checksum(file_to_hash, algorithm="sha1"):
     return hashresult.hexdigest()
 
 def hashtar(input_tar_file, algorithm="sha1"):
-    assert hasattr(hashlib, algorithm), "Invalid algorithm." # LBYL instead of EAFP, may be use
-                                                             # try except instead
     if algorithm not in ALGORITHMS:
-        print("Please choose a valid algorithm, options are: sha1, md5, sha256")
+        print("Please choose a valid algorithm, options are:")
+        for algo in ALGORITHMS:
+            print(algo, end=" ")
+        print()
         sys.exit()
+    # Check if hashlib has the algorithm (e.g FIPS Python without MD5)
+    assert hasattr(hashlib, algorithm), "Invalid algorithm."
     with tarfile.open(input_tar_file) as tar_input:
         outputname = input_tar_file + '.' + algorithm
         with open(outputname, 'w') as checksums_file:
