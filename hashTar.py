@@ -11,9 +11,9 @@ Options for optional-algorithm are (md5 is not available in -- rare -- FIPS comp
 md5
 sha1 (default)
 sha256
-
+sha3_512"
 """
-algorithms = ["sha1", "md5", "sha256"]
+algorithms = ["md5", "sha1", "sha256", "sha3_512"]
 
 def checksum(file_to_hash, algorithm="sha1"):
     if algorithm == "sha1":
@@ -22,11 +22,15 @@ def checksum(file_to_hash, algorithm="sha1"):
         hashresult = hashlib.md5()
     elif algorithm == "sha256":
         hashresult = hashlib.sha256()
+    elif algorithm == "sha3_512": # contrary to sha512, sha3-512 is not vulnerable to length extension attack
+        hashresult = hashlib.sha3_512()
     for chunk in iter(lambda: file_to_hash.read(4096), b''):
         hashresult.update(chunk)
     return hashresult.hexdigest()
 
 def hashtar(input_tar_file, algorithm="sha1"):
+    assert hasattr(hashlib, algorithm), "Invalid algorithm." # LBYL instead of EAFP, may be use
+                                                             # try except instead
     if algorithm not in algorithms:
         print("Please choose a valid algorithm, options are: sha1, md5, sha256")
         sys.exit()
